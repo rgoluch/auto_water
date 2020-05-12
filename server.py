@@ -8,7 +8,7 @@ app = Flask(__name__)
 def temp():
     return "hello world"
 
-@app.route("/water/<status>")
+@app.route("/water/<status>", methods=["POST"])
 def water_plant(status: str):
     water(status)
     # TODO add in a call to write last water time
@@ -25,7 +25,7 @@ def set_auto_water(setting: str):
         return "Auto water on!"
     return "Auto water off!"
 
-@app.route("/data")
+@app.route("/data", methods=["GET"])
 def get_sensor_data():
     data = plant_data()
     return data
