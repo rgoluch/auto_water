@@ -1,6 +1,7 @@
 # File that controls the pump and does the computing for the server
 from server import *
 import os
+import subprocess
 import time
 from board import SCL, SDA
 import busio
@@ -11,9 +12,11 @@ ss = Seesaw(i2c_bus, addr=0x36)
 
 def water(status):
     if status == "on":
-        os.system("sudo uhubctl -l 1-1 -p 4 -a on")
+        # os.system("sudo uhubctl -l 1-1 -p 4 -a on")
+        subprocess.run(["uhubctl", "-l 1-1 -p 4 -a on"])
     if status == "off":
-        os.system("uhubctl -l 1-1 -p 4 -a off")
+        # os.system("uhubctl -l 1-1 -p 4 -a off")
+        subprocess.run(["uhubctl", "-l 1-1 -p 4 -a off"])
 
 def auto_water():
     # TODO
