@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from controller import *
 
 
@@ -28,7 +28,7 @@ def set_auto_water(setting: str):
 @app.route("/data", methods=["GET"])
 def get_sensor_data():
     data = plant_data()
-    return data
+    return jsonify(data)
 
 
 if __name__ == '__main__':
