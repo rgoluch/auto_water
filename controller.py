@@ -22,4 +22,7 @@ def auto_water():
 def plant_data():
     temp = ss.get_temp()
     moisture = ss.moisture_read()
-    return temp, moisture
+    data = []
+    data.append(str(temp))
+    data.append(str(moisture))
+    return data
