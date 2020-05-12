@@ -10,6 +10,7 @@ def temp():
 
 @app.route("/water/<status>", methods=["POST"])
 def water_plant(status: str):
+    print(status)
     water(status)
     # TODO add in a call to write last water time
     return "Watering Plant!"
