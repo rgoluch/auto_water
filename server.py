@@ -2,11 +2,13 @@ from flask import Flask, jsonify
 from pymongo import MongoClient
 from controller import *
 from apscheduler.schedulers.background import BackgroundScheduler
+import pymongo
 
 
 app = Flask(__name__)
-client: MongoClient = MongoClient("localhost:270017")
-db = client.data
+connection_string = "mongodb+srv://opus:autowater@cluster0-hhj2f.mongodb.net/test?retryWrites=true&w=majority"
+client = pymongo.MongoClient(connection_string)
+db = client.get_database('plant_data')
 
 @app.route("/")
 def temp():
@@ -32,8 +34,12 @@ def set_auto_water(setting: str):
 
 @app.route("/data", methods=["GET"])
 def get_sensor_data():
-    data = plant_data()
-
+    data = []
+    cursor = db.data.find({})
+    for c in cursor:
+        c['temp'] = str(c['temp'])
+        c['moisture'] = str(c['moisture'])
+        data.append(c)
     return jsonify(data)
 
 def add_sensor_data():
@@ -48,7 +54,7 @@ def add_sensor_data():
     db.data.insert_one(reading)
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(add_sensor_data, 'interval', seconds='30')
+sched.add_job(add_sensor_data, 'interval', seconds=30)
 sched.start()
 
 if __name__ == '__main__':
