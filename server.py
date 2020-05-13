@@ -43,7 +43,13 @@ def get_sensor_data():
     cursor.execute('select * from sensor_data')
     rows = cursor.fetchall()
     for r in rows:
-        data.append(r)
+        temp = {
+            "date" : r[0],
+            "time" : r[1],
+            "temp" : r[2],
+            "m" : r[3]
+        }
+        data.append(temp)
     return jsonify(data)
 
 @app.route("/add", methods=['GET'])
@@ -57,6 +63,7 @@ def add_sensor_data():
         cursor.execute(query,insert)
         db.commit()
         db.close()
+        
     return "Inserted data"
 
 sched = BackgroundScheduler(daemon=True)
