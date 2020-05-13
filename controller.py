@@ -13,12 +13,8 @@ ss = Seesaw(i2c_bus, addr=0x36)
 def water(status):
     if status == "on":
         os.system("uhubctl -l 1-1 -p 4 -a on")
-        # subprocess.call(["sudo"], ["/home/pi/uhubctl/uhubctl"], ["-l 1-1 -p 4 -a on"])
-        # subprocess.run(["sudo /home/pi/uhubctl/uhubctl", "-l 1-1 -p 4 -a on"])
     if status == "off":
         os.system("uhubctl -l 1-1 -p 4 -a off")
-        # subprocess.run(["sudo /home/pi/uhubctl/uhubctl", "-l 1-1 -p 4 -a off"])
-        # subprocess.call(["sudo"], ["/home/pi/uhubctl/uhubctl"], ["-l 1-1 -p 4 -a off"])
 
 
 def auto_water():
