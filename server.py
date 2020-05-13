@@ -32,7 +32,7 @@ def water_plant(status: str):
     return "command sent!"
 
 
-@app.route("/last_water")
+@app.route("/last_water", methods=["GET"])
 def get_last_water():
     db = sqlite3.connect(database)
     cursor = db.cursor()
