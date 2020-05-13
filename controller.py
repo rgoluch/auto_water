@@ -1,5 +1,4 @@
 # File that controls the pump and does the computing for the server
-from server import *
 import os
 import subprocess
 import time

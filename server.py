@@ -42,6 +42,7 @@ def get_sensor_data():
         data.append(c)
     return jsonify(data)
 
+@app.route("/add", methods=['GET'])
 def add_sensor_data():
     data = plant_data()
     temp = data[0]
@@ -52,10 +53,11 @@ def add_sensor_data():
         "moisture": m
     }
     db.data.insert_one(reading)
+    return "Inserted data"
 
-sched = BackgroundScheduler(daemon=True)
-sched.add_job(add_sensor_data, 'interval', seconds=30)
-sched.start()
+# sched = BackgroundScheduler(daemon=True)
+# sched.add_job(add_sensor_data, 'interval', seconds=30)
+# sched.start()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
