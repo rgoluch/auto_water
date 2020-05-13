@@ -20,15 +20,16 @@ def temp():
 
 @app.route("/water/<status>", methods=["POST"])
 def water_plant(status: str):
-    water(status)
-    if status == 'on':
+    
+    if status == "on":
         insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
         query = """insert into water_log (date, time) values (?,?)"""
         with sqlite3.connect(database) as db:
             cursor = db.cursor()
             cursor.execute(query,insert)
             db.commit()
-            # db.close()
+            db.close()
+    water(status)
     return "command sent!"
 
 
@@ -39,11 +40,11 @@ def get_last_water():
     cursor.execute('select * from water_log order by date desc limit 1')
     log = cursor.fetchone()
 
-    # temp = {
-    #         "date" : log[0],
-    #         "time" : log[1]
-    #     }
-    return jsonify(log)
+    temp = {
+            "date" : log[0],
+            "time" : log[1]
+        }
+    return jsonify(temp)
 
 # TODO
 @app.route("/auto/<setting>", methods=["PUT"])
