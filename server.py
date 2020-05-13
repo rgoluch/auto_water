@@ -40,8 +40,8 @@ def get_sensor_data():
     data = []
     db = sqlite3.connect(database)
     cursor = db.cursor()
-    cursor.execute('select * from plant_data')
-    rows = cursor.fetchall
+    cursor.execute('select * from sensor_data')
+    rows = cursor.fetchall()
     for r in rows:
         data.append(r)
     return jsonify(data)
@@ -49,13 +49,14 @@ def get_sensor_data():
 @app.route("/add", methods=['GET'])
 def add_sensor_data():
     data = plant_data()
-    insert = (datetime.datetime.now().year, datetime.datetime.now().time(), data[0], data[1])
+    insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()), data[0], data[1])
     query = """insert into sensor_data (date, time, temp, moisture) values (?,?,?,?)"""
 
     with sqlite3.connect(database) as db:
         cursor = db.cursor()
         cursor.execute(query,insert)
         db.commit()
+        db.close()
     return "Inserted data"
 
 sched = BackgroundScheduler(daemon=True)
