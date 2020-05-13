@@ -1,8 +1,8 @@
 from flask import Flask, jsonify
-from pymongo import MongoClient
+from flask_pymongo import pymongo
 from controller import *
 from apscheduler.schedulers.background import BackgroundScheduler
-import pymongo
+# import pymongo
 
 
 app = Flask(__name__)
