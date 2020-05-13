@@ -37,7 +37,7 @@ def water_plant(status: str):
 def get_last_water():
     db = sqlite3.connect(database)
     cursor = db.cursor()
-    cursor.execute('select * from water_log order by date desc limit 1')
+    cursor.execute('select * from water_log order by time desc,date desc limit 1')
     log = cursor.fetchone()
 
     temp = {
