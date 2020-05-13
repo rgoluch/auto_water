@@ -2,13 +2,16 @@ from flask import Flask, jsonify
 from flask_pymongo import pymongo
 from controller import *
 from apscheduler.schedulers.background import BackgroundScheduler
-# import pymongo
+import sqlite3, datetime
 
 
 app = Flask(__name__)
-connection_string = "mongodb+srv://opus:autowater@cluster0-hhj2f.mongodb.net/test?retryWrites=true&w=majority"
-client = pymongo.MongoClient(connection_string)
-db = client.get_database('plant_data')
+# connection_string = "mongodb+srv://opus:autowater@cluster0-hhj2f.mongodb.net/test?retryWrites=true&w=majority"
+# client = pymongo.MongoClient(connection_string)
+# db = client.get_database('plant_data')
+database = 'plant_data'
+db = sqlite3.connect(database)
+
 
 @app.route("/")
 def temp():
@@ -35,29 +38,27 @@ def set_auto_water(setting: str):
 @app.route("/data", methods=["GET"])
 def get_sensor_data():
     data = []
-    cursor = db.data.find({})
-    for c in cursor:
-        c['temp'] = str(c['temp'])
-        c['moisture'] = str(c['moisture'])
-        data.append(c)
+    cursor = db.cursor()
+    cursor.execute('select * from plant_data')
+    rows = cursor.fetchall
+    for r in rows:
+        data.append(r)
     return jsonify(data)
 
 @app.route("/add", methods=['GET'])
 def add_sensor_data():
     data = plant_data()
-    temp = data[0]
-    m = data[1]
+    insert = (datetime.date(), datetime.time(), data[0], data[1])
+    query = """insert into sensor_data (date, time, temp, moisture) values (?,?,?,?)"""
 
-    reading = {
-        "temp": temp,
-        "moisture": m
-    }
-    db.data.insert_one(reading)
+    cursor = db.cursor()
+    cursor.execute(query,insert)
+    db.commit()
     return "Inserted data"
 
-# sched = BackgroundScheduler(daemon=True)
-# sched.add_job(add_sensor_data, 'interval', seconds=30)
-# sched.start()
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(add_sensor_data, 'interval', seconds=30)
+sched.start()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
