@@ -10,7 +10,7 @@ app = Flask(__name__)
 # client = pymongo.MongoClient(connection_string)
 # db = client.get_database('plant_data')
 database = 'plant_data'
-db = sqlite3.connect(database)
+
 
 
 @app.route("/")
@@ -38,6 +38,7 @@ def set_auto_water(setting: str):
 @app.route("/data", methods=["GET"])
 def get_sensor_data():
     data = []
+    db = sqlite3.connect(database)
     cursor = db.cursor()
     cursor.execute('select * from plant_data')
     rows = cursor.fetchall
@@ -48,12 +49,13 @@ def get_sensor_data():
 @app.route("/add", methods=['GET'])
 def add_sensor_data():
     data = plant_data()
-    insert = (datetime.date(), datetime.time(), data[0], data[1])
+    insert = (datetime.datetime.now().year, datetime.datetime.now().time(), data[0], data[1])
     query = """insert into sensor_data (date, time, temp, moisture) values (?,?,?,?)"""
 
-    cursor = db.cursor()
-    cursor.execute(query,insert)
-    db.commit()
+    with sqlite3.connect(database) as db:
+        cursor = db.cursor()
+        cursor.execute(query,insert)
+        db.commit()
     return "Inserted data"
 
 sched = BackgroundScheduler(daemon=True)
