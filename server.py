@@ -28,7 +28,7 @@ def water_plant(status: str):
             cursor = db.cursor()
             cursor.execute(query,insert)
             db.commit()
-            db.close()
+            # db.close()
     return "command sent!"
 
 
@@ -37,13 +37,13 @@ def get_last_water():
     db = sqlite3.connect(database)
     cursor = db.cursor()
     cursor.execute('select * from water_log order by date desc limit 1')
-    log = cursor.fetchall()
+    log = cursor.fetchone()
 
-    temp = {
-            "date" : log[0],
-            "time" : log[1]
-        }
-    return jsonify(temp)
+    # temp = {
+    #         "date" : log[0],
+    #         "time" : log[1]
+    #     }
+    return jsonify(log)
 
 # TODO
 @app.route("/auto/<setting>", methods=["PUT"])
@@ -87,7 +87,7 @@ def add_sensor_data():
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(add_sensor_data, 'interval', seconds=30)
+sched.add_job(add_sensor_data, 'interval', minutes=30)
 sched.start()
 
 
