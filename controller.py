@@ -30,7 +30,6 @@ def add_sensor_data():
     access_db(query, insert)
     return "Inserted data"
 
-
 def plant_data():
     temp = ss.get_temp()
     moisture = ss.moisture_read()
