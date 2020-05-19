@@ -6,12 +6,7 @@ import sqlite3, datetime
 
 
 app = Flask(__name__)
-# connection_string = "mongodb+srv://opus:autowater@cluster0-hhj2f.mongodb.net/test?retryWrites=true&w=majority"
-# client = pymongo.MongoClient(connection_string)
-# db = client.get_database('plant_data')
 database = 'plant_data'
-
-
 
 @app.route("/")
 def temp():
@@ -28,7 +23,7 @@ def water_plant(status: str):
             cursor = db.cursor()
             cursor.execute(query,insert)
             db.commit()
-            db.close()
+            # db.close()
     water(status)
     return "command sent!"
 
@@ -72,7 +67,7 @@ def get_sensor_data():
     return jsonify(data)
 
 
-@app.route("/add", methods=['GET'])
+# @app.route("/add", methods=['GET'])
 def add_sensor_data():
     data = plant_data()
     insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()), data[0], data[1])
@@ -82,7 +77,7 @@ def add_sensor_data():
         cursor = db.cursor()
         cursor.execute(query,insert)
         db.commit()
-        db.close()
+        # db.close()
         
     return "Inserted data"
 
