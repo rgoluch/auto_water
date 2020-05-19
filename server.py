@@ -52,8 +52,16 @@ def get_sensor_data():
     return jsonify(data)
 
 
+def add_sensor_data():
+    data = plant_data()
+    insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()), data[0], data[1])
+    query = """insert into sensor_data (date, time, temp, moisture) values (?,?,?,?)"""
+    access_db(query, insert)
+    return "Inserted data"
+
+
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(add_sensor_data(), 'interval', minutes=30)
+sched.add_job(add_sensor_data, 'interval', seconds=10)
 sched.start()
 
 
