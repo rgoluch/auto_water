@@ -31,14 +31,20 @@ def plant_data():
     return data
 
 def access_db(query: str, insert: str):
+    return_data = None
     with sqlite3.connect(database) as db:
         cursor = db.cursor()
-        if insert is not None:
+        first = query.split()[0]
+        if first == "select":
+            cursor.execute(query)
+            return_data = cursor.fetchall()
+        elif insert is not None:
             cursor.execute(query,insert)
         else:
             cursor.execute(query)
         db.commit()
         db.close()
+    return return_data
     
 
 # def add_db_data(query: str):

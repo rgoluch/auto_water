@@ -22,11 +22,11 @@ def water_plant(status: str):
 
 @app.route("/last_water", methods=["GET"])
 def get_last_water():
-    db = sqlite3.connect(database)
-    cursor = db.cursor()
-    cursor.execute('select * from water_log order by time desc,date desc limit 1')
-    log = cursor.fetchall()
-
+    # db = sqlite3.connect(database)
+    # cursor = db.cursor()
+    # cursor.execute('select * from water_log order by time desc,date desc limit 1')
+    # log = cursor.fetchall()
+    log = access_db('select * from water_log order by time desc,date desc limit 1', None)
     temp = {
             "date" : log[0],
             "time" : log[1]
@@ -44,10 +44,11 @@ def set_auto_water(setting: str):
 @app.route("/data", methods=["GET"])
 def get_sensor_data():
     data = []
-    db = sqlite3.connect(database)
-    cursor = db.cursor()
-    cursor.execute('select * from sensor_data')
-    rows = cursor.fetchall()
+    # db = sqlite3.connect(database)
+    # cursor = db.cursor()
+    # cursor.execute('select * from sensor_data')
+    # rows = cursor.fetchall()
+    rows = access_db("select * from sensor_data", None)
     for r in rows:
         temp = {
             "date" : r[0],
