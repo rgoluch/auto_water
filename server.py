@@ -22,14 +22,10 @@ def water_plant(status: str):
 
 @app.route("/last_water", methods=["GET"])
 def get_last_water():
-    # db = sqlite3.connect(database)
-    # cursor = db.cursor()
-    # cursor.execute('select * from water_log order by time desc,date desc limit 1')
-    # log = cursor.fetchall()
-    log = access_db('select * from water_log order by time desc,date desc limit 1', None)
+    log = access_db('select * from water_log order by date desc,time desc limit 1', None)
     temp = {
-            "date" : log[0],
-            "time" : log[1]
+            "date" : log[0][0],
+            "time" : log[0][1]
         }
     return jsonify(temp)
 
@@ -44,10 +40,6 @@ def set_auto_water(setting: str):
 @app.route("/data", methods=["GET"])
 def get_sensor_data():
     data = []
-    # db = sqlite3.connect(database)
-    # cursor = db.cursor()
-    # cursor.execute('select * from sensor_data')
-    # rows = cursor.fetchall()
     rows = access_db("select * from sensor_data", None)
     for r in rows:
         temp = {
@@ -60,19 +52,11 @@ def get_sensor_data():
     return jsonify(data)
 
 
-# @app.route("/add", methods=['GET'])
 def add_sensor_data():
     data = plant_data()
     insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()), data[0], data[1])
     query = """insert into sensor_data (date, time, temp, moisture) values (?,?,?,?)"""
     access_db(query, insert)
-
-    # with sqlite3.connect(database) as db:
-    #     cursor = db.cursor()
-    #     cursor.execute(query,insert)
-    #     db.commit()
-    #     # db.close()
-        
     return "Inserted data"
 
 

@@ -43,8 +43,4 @@ def access_db(query: str, insert: str):
         else:
             cursor.execute(query)
         db.commit()
-        db.close()
     return return_data
-    
-
-# def add_db_data(query: str):
