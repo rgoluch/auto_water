@@ -22,6 +22,15 @@ def auto_water():
     # TODO
     return False
 
+
+def add_sensor_data():
+    data = plant_data()
+    insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()), data[0], data[1])
+    query = """insert into sensor_data (date, time, temp, moisture) values (?,?,?,?)"""
+    access_db(query, insert)
+    return "Inserted data"
+
+
 def plant_data():
     temp = ss.get_temp()
     moisture = ss.moisture_read()
