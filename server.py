@@ -1,12 +1,8 @@
 from flask import Flask, jsonify
-from flask_pymongo import pymongo
 from controller import *
 from apscheduler.schedulers.background import BackgroundScheduler
-import sqlite3, datetime
-
 
 app = Flask(__name__)
-database = 'plant_data'
 
 @app.route("/")
 def temp():
@@ -19,11 +15,7 @@ def water_plant(status: str):
     if status == "on":
         insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
         query = """insert into water_log (date, time) values (?,?)"""
-        with sqlite3.connect(database) as db:
-            cursor = db.cursor()
-            cursor.execute(query,insert)
-            db.commit()
-            # db.close()
+        access_db(query, insert)
     water(status)
     return "command sent!"
 
@@ -33,7 +25,7 @@ def get_last_water():
     db = sqlite3.connect(database)
     cursor = db.cursor()
     cursor.execute('select * from water_log order by time desc,date desc limit 1')
-    log = cursor.fetchone()
+    log = cursor.fetchall()
 
     temp = {
             "date" : log[0],
@@ -72,12 +64,13 @@ def add_sensor_data():
     data = plant_data()
     insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()), data[0], data[1])
     query = """insert into sensor_data (date, time, temp, moisture) values (?,?,?,?)"""
+    access_db(query, insert)
 
-    with sqlite3.connect(database) as db:
-        cursor = db.cursor()
-        cursor.execute(query,insert)
-        db.commit()
-        # db.close()
+    # with sqlite3.connect(database) as db:
+    #     cursor = db.cursor()
+    #     cursor.execute(query,insert)
+    #     db.commit()
+    #     # db.close()
         
     return "Inserted data"
 
