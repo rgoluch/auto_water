@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from controller import *
+import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
@@ -23,9 +24,13 @@ def water_plant(status: str):
 @app.route("/last_water", methods=["GET"])
 def get_last_water():
     log = access_db('select * from water_log order by date desc,time desc limit 1', None)
+    date = log[0][0]
+    date = datetime.strptime(date, '%m/$d/%y')
+    time = log[0][1]
+    time = datetime.strptime(time, '%H:%M')
     temp = {
-            "date" : log[0][0],
-            "time" : log[0][1]
+            "date" : date,
+            "time" : time
         }
     return jsonify(temp)
 

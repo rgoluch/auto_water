@@ -9,7 +9,7 @@ import sqlite3, datetime
  
 i2c_bus = busio.I2C(SCL, SDA)
 ss = Seesaw(i2c_bus, addr=0x36)
-database = 'plant_data'
+database = 'plant_data.db'
 
 def water(status):
     if status == "on":
