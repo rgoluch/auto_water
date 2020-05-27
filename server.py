@@ -25,9 +25,9 @@ def water_plant(status: str):
 def get_last_water():
     log = access_db('select * from water_log order by date desc,time desc limit 1', None)
     date = log[0][0]
-    date = datetime.strptime(date, '%m/$d/%y')
+    date = datetime.datetime.strptime(date, '%m/$d/%y')
     time = log[0][1]
-    time = datetime.strptime(time, '%H:%M')
+    time = datetime.datetime.strptime(time, '%H:%M')
     temp = {
             "date" : date,
             "time" : time
