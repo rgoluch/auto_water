@@ -58,7 +58,7 @@ def get_sensor_data():
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(add_sensor_data, 'interval', seconds=10)
+sched.add_job(add_sensor_data, 'interval', hours=6)
 sched.start()
 
 
