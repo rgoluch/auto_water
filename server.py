@@ -10,14 +10,24 @@ def temp():
     return "hello world"
 
 
-@app.route("/water/<status>", methods=["POST"])
+@app.route("/water/on", methods=["POST"])
 def water_plant(status: str):
     
-    if status == "on":
-        insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
-        query = """insert into water_log (date, time) values (?,?)"""
-        access_db(query, insert)
-    water(status)
+    # if status == "on":
+    insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
+    query = """insert into water_log (date, time) values (?,?)"""
+    access_db(query, insert)
+    water("on")
+    return "command sent!"
+
+@app.route("/water/off", methods=["POST"])
+def water_plant(status: str):
+    
+    # if status == "on":
+    #     insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
+    #     query = """insert into water_log (date, time) values (?,?)"""
+    #     access_db(query, insert)
+    water("off")
     return "command sent!"
 
 
