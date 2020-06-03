@@ -10,25 +10,25 @@ def temp():
     return "hello world"
 
 
-@app.route("/water/on", methods=["POST"])
+@app.route("/water/<status>", methods=["POST"])
 def water_plant(status: str):
     
-    # if status == "on":
-    insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
-    query = """insert into water_log (date, time) values (?,?)"""
-    access_db(query, insert)
-    water("on")
+    if status == "on":
+        insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
+        query = """insert into water_log (date, time) values (?,?)"""
+        access_db(query, insert)
+    water(status)
     return "command sent!"
 
-@app.route("/water/off", methods=["POST"])
-def water_plant(status: str):
+# @app.route("/water/off", methods=["POST"])
+# def water_plant_off():
     
-    # if status == "on":
-    #     insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
-    #     query = """insert into water_log (date, time) values (?,?)"""
-    #     access_db(query, insert)
-    water("off")
-    return "command sent!"
+#     # if status == "on":
+#     #     insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
+#     #     query = """insert into water_log (date, time) values (?,?)"""
+#     #     access_db(query, insert)
+#     water("off")
+#     return "command sent!"
 
 
 @app.route("/last_water", methods=["GET"])
