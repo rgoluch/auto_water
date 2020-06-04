@@ -57,10 +57,9 @@ def get_sensor_data():
         data.append(temp)
     return jsonify(data)
 
-schedule.every(10).seconds.do(add_sensor_data)
-# sched = BackgroundScheduler(daemon=True)
-# sched.add_job(add_sensor_data, 'interval', hours=6)
-# sched.start()
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(add_sensor_data(), 'interval', seconds=10)
+sched.start()
 
 
 if __name__ == '__main__':
