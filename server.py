@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from controller import *
 import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
+import schedule
 
 app = Flask(__name__)
 
@@ -15,25 +16,15 @@ def water_plant(status: str):
     
     if status == "on":
         insert = (str(datetime.datetime.now().date().strftime('%m.%d.%Y')), str(datetime.datetime.now().time()))
-        query = """insert into water_log (date, time) values (?,?)"""
+        query = "insert into water_log (date, time) values (?,?)"
         access_db(query, insert)
     water(status)
     return "command sent!"
 
-# @app.route("/water/off", methods=["POST"])
-# def water_plant_off():
-    
-#     # if status == "on":
-#     #     insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
-#     #     query = """insert into water_log (date, time) values (?,?)"""
-#     #     access_db(query, insert)
-#     water("off")
-#     return "command sent!"
-
 
 @app.route("/last_water", methods=["GET"])
 def get_last_water():
-    log = access_db('select * from water_log order by date desc,time desc limit 1', None)
+    log = access_db('select * from water_log order by rowid desc limit 1', None)
     date = log[0][0]
     # date = datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%m.%d.%y')
     time = log[0][1]
@@ -66,10 +57,10 @@ def get_sensor_data():
         data.append(temp)
     return jsonify(data)
 
-
-sched = BackgroundScheduler(daemon=True)
-sched.add_job(add_sensor_data, 'interval', seconds=6)
-sched.start()
+schedule.every(10).seconds.do(add_sensor_data)
+# sched = BackgroundScheduler(daemon=True)
+# sched.add_job(add_sensor_data, 'interval', hours=6)
+# sched.start()
 
 
 if __name__ == '__main__':

@@ -32,6 +32,7 @@ def add_sensor_data():
 
 def plant_data():
     temp = ss.get_temp()
+    temp = (temp * 9/5) + 32
     moisture = ss.moisture_read()
     data = []
     data.append(str(temp))
