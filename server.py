@@ -14,7 +14,7 @@ def temp():
 def water_plant(status: str):
     
     if status == "on":
-        insert = (str(datetime.datetime.now().date()), str(datetime.datetime.now().time()))
+        insert = (str(datetime.datetime.now().date().strftime('%m.%d.%Y')), str(datetime.datetime.now().time()))
         query = """insert into water_log (date, time) values (?,?)"""
         access_db(query, insert)
     water(status)
@@ -35,7 +35,7 @@ def water_plant(status: str):
 def get_last_water():
     log = access_db('select * from water_log order by date desc,time desc limit 1', None)
     date = log[0][0]
-    date = datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%m.%d.%y')
+    # date = datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%m.%d.%y')
     time = log[0][1]
     time = datetime.datetime.strptime(time, '%H:%M:%S.%f').strftime('%H:%M')
     temp = {
@@ -68,7 +68,7 @@ def get_sensor_data():
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(add_sensor_data, 'interval', hours=6)
+sched.add_job(add_sensor_data, 'interval', seconds=6)
 sched.start()
 
 
