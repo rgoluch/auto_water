@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="plants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun.rain.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Oc-jC-xtI">
+                                <rect key="frame" x="87" y="53" width="240" height="128"/>
+                                <color key="tintColor" red="0.60392156860000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="122.5" id="nhD-hg-KTa"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pl1-pJ-lYE">
+                                <rect key="frame" x="169.5" y="186" width="75.5" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" red="0.30588235289999999" green="0.74901960779999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.30588235289999999" green="0.74901960779999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3n-q3-hWr">
+                                <rect key="frame" x="47" y="651" width="144" height="63"/>
+                                <color key="backgroundColor" red="0.60392156860000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="eAh-wF-0eG"/>
+                                    <constraint firstAttribute="height" constant="63" id="wf5-kv-bcV"/>
+                                </constraints>
+                                <state key="normal" title="Water On">
+                                    <color key="titleColor" red="0.0" green="0.1960784314" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="watering_status:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YeZ-SF-Lim"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfZ-Iv-xMm">
+                                <rect key="frame" x="223" y="651" width="144" height="63"/>
+                                <color key="backgroundColor" red="0.60392156860000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Water Off">
+                                    <color key="titleColor" red="0.0" green="0.1960784314" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="watering_status_off:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iHe-Bq-mbl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1o-vI-NbR">
+                                <rect key="frame" x="47" y="737" width="144" height="63"/>
+                                <color key="backgroundColor" red="0.60392156860000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="XgC-8i-OKO"/>
+                                    <constraint firstAttribute="width" constant="144" id="jk2-M2-qpn"/>
+                                </constraints>
+                                <state key="normal" title="Auto Water">
+                                    <color key="titleColor" red="0.0" green="0.1960784314" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKW-uN-myP">
+                                <rect key="frame" x="223" y="737" width="144" height="63"/>
+                                <color key="backgroundColor" red="0.60392156860000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="KtP-3e-S6e"/>
+                                    <constraint firstAttribute="height" constant="63" id="vP4-3P-VYW"/>
+                                </constraints>
+                                <state key="normal" title="Data Trends">
+                                    <color key="titleColor" red="0.0" green="0.1960784314" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="show_trend_data" destination="BYZ-38-t0r" eventType="touchUpInside" id="IyZ-oh-G9i"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last Water Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyQ-Gf-58J">
+                                <rect key="frame" x="47" y="561" width="144" height="73"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.30588235289999999" green="0.74901960779999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Auto Water Status: Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-Kj-wW1">
+                                <rect key="frame" x="91" y="232" width="232" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.30588235289999999" green="0.74901960779999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hg-eN-ufd" customClass="FLAnimatedImageView">
+                                <rect key="frame" x="40" y="263" width="335" height="299"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="16"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last Water Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzO-I0-zj9">
+                                <rect key="frame" x="223" y="561" width="144" height="73"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.30588235289999999" green="0.74901960779999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.19607843137254902" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="K1o-vI-NbR" firstAttribute="leading" secondItem="W3n-q3-hWr" secondAttribute="leading" id="0xL-Tz-Szl"/>
+                            <constraint firstItem="8hg-eN-ufd" firstAttribute="centerX" secondItem="Pl1-pJ-lYE" secondAttribute="centerX" id="1kB-K0-ADU"/>
+                            <constraint firstItem="DfZ-Iv-xMm" firstAttribute="leading" secondItem="W3n-q3-hWr" secondAttribute="trailing" constant="32" id="74d-XL-dyi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DyQ-Gf-58J" secondAttribute="trailing" constant="223" id="9Qa-hq-J9l"/>
+                            <constraint firstItem="W3n-q3-hWr" firstAttribute="baseline" secondItem="DfZ-Iv-xMm" secondAttribute="firstBaseline" id="9hZ-TB-dlz"/>
+                            <constraint firstItem="1Oc-jC-xtI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="Ab1-01-LZC"/>
+                            <constraint firstItem="xKW-uN-myP" firstAttribute="centerX" secondItem="1Oc-jC-xtI" secondAttribute="centerX" constant="88" id="BF0-qC-wAE"/>
+                            <constraint firstItem="xKW-uN-myP" firstAttribute="baseline" secondItem="K1o-vI-NbR" secondAttribute="baseline" id="GaA-xj-8xC"/>
+                            <constraint firstItem="DyQ-Gf-58J" firstAttribute="baseline" secondItem="uMa-Kj-wW1" secondAttribute="baseline" constant="380.5" id="I8i-8k-YyX"/>
+                            <constraint firstItem="wzO-I0-zj9" firstAttribute="trailing" secondItem="8hg-eN-ufd" secondAttribute="trailing" constant="-8" id="IfA-by-7xi"/>
+                            <constraint firstItem="8hg-eN-ufd" firstAttribute="top" secondItem="Pl1-pJ-lYE" secondAttribute="bottom" constant="38.5" id="KRU-XY-1d6"/>
+                            <constraint firstItem="Pl1-pJ-lYE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lda-60-Msv"/>
+                            <constraint firstItem="xKW-uN-myP" firstAttribute="centerX" secondItem="DyQ-Gf-58J" secondAttribute="centerX" constant="175.5" id="M4x-WY-nTe"/>
+                            <constraint firstItem="wzO-I0-zj9" firstAttribute="baseline" secondItem="DyQ-Gf-58J" secondAttribute="baseline" id="Qcw-j7-4ux"/>
+                            <constraint firstItem="W3n-q3-hWr" firstAttribute="top" secondItem="Pl1-pJ-lYE" secondAttribute="bottom" constant="426.5" id="bgE-O1-y9G"/>
+                            <constraint firstItem="W3n-q3-hWr" firstAttribute="top" secondItem="DfZ-Iv-xMm" secondAttribute="top" id="cjK-Wi-tRf"/>
+                            <constraint firstItem="DfZ-Iv-xMm" firstAttribute="top" secondItem="DyQ-Gf-58J" secondAttribute="bottom" constant="17" id="eTj-GQ-YyC"/>
+                            <constraint firstItem="DyQ-Gf-58J" firstAttribute="top" secondItem="8hg-eN-ufd" secondAttribute="bottom" constant="-1" id="eno-Wo-AEZ"/>
+                            <constraint firstItem="W3n-q3-hWr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="47" id="g66-cQ-StT"/>
+                            <constraint firstItem="1Oc-jC-xtI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="r1C-LH-Hmv"/>
+                            <constraint firstItem="wzO-I0-zj9" firstAttribute="centerX" secondItem="DfZ-Iv-xMm" secondAttribute="centerX" id="rB4-0W-u8X"/>
+                            <constraint firstItem="xKW-uN-myP" firstAttribute="centerX" secondItem="Pl1-pJ-lYE" secondAttribute="centerX" constant="88" id="rJJ-SF-tHA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="W3n-q3-hWr" secondAttribute="bottom" constant="148" id="rQ0-Eq-X7l"/>
+                            <constraint firstItem="DyQ-Gf-58J" firstAttribute="leading" secondItem="uMa-Kj-wW1" secondAttribute="trailing" constant="-276" id="rac-bx-GSr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DfZ-Iv-xMm" secondAttribute="trailing" constant="47" id="uLl-hs-JI3"/>
+                            <constraint firstItem="K1o-vI-NbR" firstAttribute="top" secondItem="W3n-q3-hWr" secondAttribute="bottom" constant="23" id="uxN-W6-EHl"/>
+                            <constraint firstItem="DyQ-Gf-58J" firstAttribute="trailing" secondItem="8hg-eN-ufd" secondAttribute="trailing" constant="-184" id="yd0-QH-OFr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="autoWaterStatus" destination="uMa-Kj-wW1" id="qBc-v8-5qS"/>
+                        <outlet property="dateLabel" destination="Pl1-pJ-lYE" id="2Fc-uo-3CB"/>
+                        <outlet property="gifDisplay" destination="8hg-eN-ufd" id="s8X-9P-Ut2"/>
+                        <outlet property="waterDate" destination="DyQ-Gf-58J" id="gzG-AV-emv"/>
+                        <outlet property="waterTime" destination="wzO-I0-zj9" id="6lv-lZ-Tf0"/>
+                        <outlet property="watering_off" destination="DfZ-Iv-xMm" id="gJu-fR-isK"/>
+                        <outlet property="watering_on" destination="W3n-q3-hWr" id="fWR-IP-O4o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-65.217391304347828" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cloud.sun.rain.fill" catalog="system" width="128" height="118"/>
+    </resources>
+</document>

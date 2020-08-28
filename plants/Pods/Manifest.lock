@@ -1,0 +1,46 @@
+PODS:
+  - Alamofire (5.2.0)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - FLAnimatedImage (1.0.12)
+  - NVActivityIndicatorView/AppExtension (4.8.0)
+  - ScrollableGraphView (4.0.6)
+  - SwiftGifOrigin (1.7.0)
+  - SwiftyJSON (4.3.0)
+  - TinyConstraints (4.0.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - Charts
+  - FLAnimatedImage
+  - NVActivityIndicatorView/AppExtension
+  - ScrollableGraphView
+  - SwiftGifOrigin (~> 1.7.0)
+  - SwiftyJSON (~> 4.0)
+  - TinyConstraints
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Charts
+    - FLAnimatedImage
+    - NVActivityIndicatorView
+    - ScrollableGraphView
+    - SwiftGifOrigin
+    - SwiftyJSON
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
+
+PODFILE CHECKSUM: 0a416a3f39298767ca61911cdde66a5b1a03c6e2
+
+COCOAPODS: 1.9.1
